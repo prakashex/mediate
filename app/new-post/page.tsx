@@ -11,8 +11,35 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { authOptions } from "@/lib/auth-options";
+import { prisma } from "@/prisma/db";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function Page() {
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
+  async function addPost(formData: FormData) {
+    "use server";
+    const title = String(formData.get("title"));
+    const content = String(formData.get("content"));
+    const category = String(formData.get("category"));
+    const authorId = session?.user.id;
+    await prisma.post.create({
+      data: {
+        title,
+        content,
+        category,
+        authorId,
+      },
+    });
+    redirect("/");
+  }
+
   return (
     <div className="px-6 pt-24 lg:px-8">
       <div className="mx-auto mx-w-2xl text-center">
@@ -23,7 +50,7 @@ export default function Page() {
           Share your "Knowledge" with the world.
         </p>
       </div>
-      <form action="" className="mx-auto max-w-xl mt-6 space-y-6">
+      <form action={addPost} className="mx-auto max-w-xl mt-6 space-y-6">
         <div className="space-y-2">
           <Label htmlFor="category">Category</Label>
           <Select required name="category">
