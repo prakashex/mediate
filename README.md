@@ -1,6 +1,7 @@
-#Mediate
 
-## This is my attempt in building a full stack blogging app using Next.js 13 and with authentication using next auth.
+## GOAL
+### quickly scaffoling a fullstack crud app using nextJS 13 and shadcn/ui
+#### Tech Used 
 
 - NextJs   -- front and backend
 - NextAuth -- authentication
