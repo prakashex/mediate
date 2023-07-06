@@ -11,6 +11,8 @@ export default async function Home() {
       author: true,
     },
   });
+
+
   return (
     <div className="bg-white py-12">
       <div className="max-w-7xl px-6 lg:px-8">
@@ -27,7 +29,7 @@ export default async function Home() {
                 key={post.id}
                 className="flex max-w-xl flex-col items-start justify-between"
               >
-                <div className="flex items-center gap-x-4 text-xs">
+                <div className="flex items-center  gap-x-4 text-xs">
                   <time
                     dateTime={post.createdAt.toISOString()}
                     className="text-gray-500"
@@ -40,17 +42,18 @@ export default async function Home() {
                     {post.category}
                   </span>
                 </div>
-                <div className="group-relative">
+                <div className="group-relative ">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                     <span>
-                      <span className="absolute inset-0">{post.title}</span>
+                      <span className="absolute inset-0" />
+                      {post.title}
                     </span>
                   </h3>
                   <Markdown className="mt-5 prose prose-sm">
                     {post.content}
                   </Markdown>
                 </div>
-                <div className="relative mt-8 flex items-center gap-x-4">
+                <div className="relative mt-8  flex items-center gap-x-4">
                   <img
                     src={post.author?.image!}
                     alt={post.author?.name!}
@@ -59,9 +62,8 @@ export default async function Home() {
                   <div className="text-sm leading-6">
                     <p className="font-semibold text-gray-900">
                       <span>
-                        <span className="absolute inset-0">
+                        <span className="absolute inset-0"/>
                           {post.author?.name}
-                        </span>
                       </span>
                     </p>
                   </div>
