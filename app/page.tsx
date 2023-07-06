@@ -45,7 +45,7 @@ export default async function Home() {
                 <div className="group-relative ">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
                     <span>
-                      <span className="absolute inset-0" />
+                      <span className="inset-0" />
                       {post.title}
                     </span>
                   </h3>
@@ -53,7 +53,7 @@ export default async function Home() {
                     {post.content}
                   </Markdown>
                 </div>
-                <div className="relative mt-8  flex items-center gap-x-4">
+                <div className="relative mt-4 mb-8 flex items-center gap-x-4">
                   <img
                     src={post.author?.image!}
                     alt={post.author?.name!}
